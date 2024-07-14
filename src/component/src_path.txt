@@ -1,0 +1,19 @@
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))) step by step:
+
+os.path.dirname(__file__):
+os.path.dirname() is a function from the Python os.path module that returns the directory name of a path.
+__file__ is a built-in variable in Python that represents the path of the current Python script.
+So, os.path.dirname(__file__) gives us the directory of the current Python script.
+os.path.join(os.path.dirname(__file__), '..', '..'):
+os.path.join() is another function from the os.path module that joins one or more path components intelligently.
+In this case, we're joining the directory of the current Python script (obtained from os.path.dirname(__file__)) with two instances of .. to navigate two directories up from the current script's location.
+This effectively gives us the path of the parent directory of the directory containing the current Python script.
+os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')):
+os.path.abspath() is a function that converts a path to an absolute path.
+We apply this function to the result of os.path.join() to ensure that we have an absolute path.
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))):
+sys.path is a list in Python that determines the locations that Python will search for modules when you try to import them.
+sys.path.append() is a method that adds a new directory to this list.
+We're appending the absolute path of the parent directory of the directory containing the current Python script to sys.path. This ensures that Python will search this directory when looking for modules to import.
+By doing this, we're effectively adding the parent directory of the current script's directory to Python's module search path.
+So, in summary, the expression sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))) dynamically adds the parent directory of the directory containing the current Python script to Python's module search path, allowing Python to locate modules located in that directory or its subdirectories. This is useful in situations where the script needs to import modules from a parent directory or its siblings.
